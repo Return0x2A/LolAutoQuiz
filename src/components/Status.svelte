@@ -3,7 +3,7 @@
 </script>
 
 <footer>
-Récupération des données...
+<p>Récupération des données...</p>
 </footer>
 
 <style>

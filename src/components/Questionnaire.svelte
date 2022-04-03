@@ -1,14 +1,37 @@
 <script lang="ts">
+    import type { Chat } from "src/models/chat.model";
+
+    export let chamage: Promise<Chat>;
 
 </script>
+
 <div class="container">
-    <div class="question">Contenu de la question ? </div>
-    <div class="reponse" style="background-color: #ffc8dd;">
-        Réponse 1
+
+    <div class="question">
+        {#await chamage }
+            <p>chargement de la photo...</p>
+        {:then chat}
+            {#if chat != null}
+                <img src="{chat.url}" alt="chat avec des poils" height="100%">
+            {:else}
+                <p>Erreur de chargement...</p>
+            {/if}
+        {/await}
     </div>
-    <div class="reponse" style="background-color: #ffafcc;">Réponse 2 </div>
-    <div class="reponse" style="background-color: #bde0fe;">Réponse 3</div>
-    <div class="reponse" style="background-color: #a2d2ff;">Réponse 4</div>
+
+    <div class="reponse" style="background-color: #ffc8dd;">
+        <p>Pyrow</p>
+    </div>
+
+    <div class="reponse" style="background-color: #ffafcc;">
+        <p>Nana</p>
+    </div>
+    <div class="reponse" style="background-color: #bde0fe;">
+        <p>Lanou</p>
+    </div>
+    <div class="reponse" style="background-color: #a2d2ff;">
+        <p>Un chat</p>
+    </div>
 </div>
 
 <style lang="scss">
@@ -28,14 +51,14 @@
         border-radius: 1em;
         width: 100%;
         min-width: 380px;
-        min-height: 180px;
+        min-height: 300px;
     }
     .reponse{
         display: flex;
         align-items: center;
         justify-content: inherit;
         flex-grow: 1;
-        margin-top: 5px;
+        margin-top: 2px;
         cursor: pointer;
         min-width: 380px;
         min-height: 80px;
