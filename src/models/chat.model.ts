@@ -1,11 +1,13 @@
+import type { Race } from "./race.model";
+
 export class Chat {
     id: string;
     race: string;
     url : string;
 
-    constructor (id, url){
+    constructor (id: string , race: string, url: string){
         this.id = id;
-        this.race = '';
+        this.race = race;
         this.url = url;
     }
 }

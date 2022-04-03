@@ -1,37 +1,37 @@
 <script lang="ts">
     import type { Chat } from "src/models/chat.model";
+    import type { Race } from "src/models/race.model";
 
-    export let chamage: Promise<Chat>;
-
+    export let questionnaire: Promise<{question: Chat, reponses: Race[]}>;
+    let question: Promise<Chat>;
 </script>
 
 <div class="container">
-
+    {#await questionnaire }
+        <p>Chargement...</p>
+    {:then questionnaire}
     <div class="question">
-        {#await chamage }
-            <p>chargement de la photo...</p>
-        {:then chat}
-            {#if chat != null}
-                <img src="{chat.url}" alt="chat avec des poils" height="100%">
-            {:else}
+        {#if questionnaire.question != null}
+                <img src="{questionnaire.question.url}" alt="chat avec des poils" height="100%">
+        {:else}
                 <p>Erreur de chargement...</p>
-            {/if}
-        {/await}
+        {/if}
     </div>
 
     <div class="reponse" style="background-color: #ffc8dd;">
-        <p>Pyrow</p>
+        <p>{questionnaire.reponses[0].nom}</p>
     </div>
 
     <div class="reponse" style="background-color: #ffafcc;">
-        <p>Nana</p>
+        <p>{questionnaire.reponses[1].nom}</p>
     </div>
     <div class="reponse" style="background-color: #bde0fe;">
-        <p>Lanou</p>
+        <p>{questionnaire.reponses[2].nom}</p>
     </div>
     <div class="reponse" style="background-color: #a2d2ff;">
-        <p>Un chat</p>
+        <p>{questionnaire.reponses[3].nom}</p>
     </div>
+    {/await}
 </div>
 
 <style lang="scss">
